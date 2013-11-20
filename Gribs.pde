@@ -8,24 +8,31 @@ Space takes a screenshot
 
 */
 
+//size of grib in pixels
 int gribSize = 200;
-int gribCells = 6;
+//width, in cells, of a grib
+int gribComplexity = 6;
 int rows, cols;
 float gribRate = 0.001;
 Grib[][] gribs;
 
 void setup(){
-  size(displayWidth,displayHeight);
+  size(954,700);
   noStroke();
   
-  cols = width/gribSize+1;
-  rows = height/gribSize+1;
+  int vertRemainder = height%gribSize;
+  int horzRemainder = width%gribSize;
+  int horzSpacer = horzRemainder/2;
+  int vertSpacer = vertRemainder/2;
+  
+  cols = width/gribSize;
+  rows = height/gribSize;
   
   gribs = new Grib[cols][rows];
   
   for(int i=0;i<cols;i++){
     for(int j=0;j<rows;j++){
-      gribs[i][j] = new Grib(gribSize, gribCells, gribSize*i, gribSize*j);
+      gribs[i][j] = new Grib(gribSize, gribComplexity, gribSize*i+horzSpacer, gribSize*j+vertSpacer);
     }
   }
 }

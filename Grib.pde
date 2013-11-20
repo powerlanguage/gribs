@@ -1,23 +1,23 @@
 class Grib {
 
   int cellSize;
-  int numCells;
+  int complexity;
   int x;
   int y;
   int[][] c;
   color col;
 
-  Grib(int gribSize, int numCells, int x, int y) {
-    this.numCells = numCells;
-    this.cellSize = gribSize/numCells;
+  Grib(int gribSize, int complexity, int x, int y) {
+    this.complexity = complexity;
+    this.cellSize = gribSize/complexity;
     this.x = x;
     this.y = y;
     refresh();
   }
 
   void draw() {
-    for(int i=0;i<numCells;i++) {
-      for(int j=0;j<numCells;j++) {
+    for(int i=0;i<complexity;i++) {
+      for(int j=0;j<complexity;j++) {
         if(c[i][j] > 0) {
           fill(col);
         } 
@@ -38,18 +38,18 @@ class Grib {
 
   void refresh() {
     col = color(random(255),random(255),random(255));
-    c = new int [numCells][numCells];
+    c = new int [complexity][complexity];
 
-    for(int i=0;i<numCells;i++) {
-      for(int j=0;j<numCells;j++) {
+    for(int i=0;i<complexity;i++) {
+      for(int j=0;j<complexity;j++) {
 
-          if(i < numCells/2) { //if in first vertical half
+          if(i < complexity/2) { //if in first vertical half
             c[i][j] = round(random(0,1));
-          } else if(numCells%2 == 1 && i == numCells/2){ //odd number of cells
+          } else if(complexity%2 == 1 && i == complexity/2){ //odd number of cells
             c[i][j] = round(random(0,1));
           }
           else { //mirror vertically
-            c[i][j] = c[numCells-1-i][j];
+            c[i][j] = c[complexity-1-i][j];
           }
       }
     }
