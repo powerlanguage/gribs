@@ -9,7 +9,7 @@ Space takes a screenshot
 */
 
 //size of grib in pixels
-int gribSize = 200;
+int gribSize = 20;
 //width, in cells, of a grib
 int gribComplexity = 6;
 int rows, cols;
@@ -17,7 +17,7 @@ float gribRate = 0.001;
 Grib[][] gribs;
 
 void setup(){
-  size(954,700);
+  size(800,600);
   noStroke();
   
   int vertRemainder = height%gribSize;
